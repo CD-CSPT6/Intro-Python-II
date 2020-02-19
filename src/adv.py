@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+p1 = Player(input("Please enter your name: -> ").capitalize(), room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +51,26 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+print("Welcome to my Text Based Adventure Game")
+print(f"Your name is {p1.name} and you are currently in the {p1.room.name}") 
+print(room['outside'].description)
+print(f'{p1.room.get_rooms_string()}')
+print("Your choices matter here so choose wisely")
+
+choices = ["n", "s", "e", "w"]
+
+
+while True:
+    cmd = input(f'Please choose {choices[0]} for North, {choices[1]} for South, {choices[2]} for East, or {choices[3]} for West to proceed.. If you have finished your adventure press q to quit ->').lower()
+    first_word = cmd.split()[0]
+    if cmd in choices:
+        p1.move(cmd)
+        p1.room.get_rooms_string()
+        print(f'{p1.room.get_rooms_string()}')      
+    elif cmd == "q":
+        print("Thanks for adventuring please quest again")
+        break #or exit()
+    else:
+        print(f"That is not an option, please choose from {choices} to proceed")
