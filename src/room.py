@@ -41,4 +41,8 @@ class Room:
         for el in self.items:
             if el.name == name_match:
                 self.items.remove(el)
+    def add_item(self, name_match):
+        for el in self.items:
+            if el.name == name_match:
+                self.items.append(name_match)
    
