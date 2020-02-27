@@ -22,3 +22,9 @@ class Player:
     def on_take(self, new_item):
         self.inventory.append(new_item)
         print(f'You just picked up: {self.get_inventory()}')
+    def on_remove(self, new_item):
+        self.inventory.remove(new_item)
+        if (len(self.inventory) < 1):
+            print(f'Your inventory is now empty')
+        else:
+            print(f'You now have: {self.get_inventory()}')

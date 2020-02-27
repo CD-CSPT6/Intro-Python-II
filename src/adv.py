@@ -65,7 +65,7 @@ p1 = Player(input("Please enter your name: -> ").capitalize(), room['outside'])
 # If the user enters "q", quit the game.
 
 
-print("Welcome to my Text Based Adventure Game")
+print("Welcome to the Cave of Wonders")
 print(f"Your name is {p1.name} and you are currently in the {p1.room.name}") 
 print(room['outside'].description)
 print(f'{p1.room.get_rooms_string()}')
@@ -87,10 +87,15 @@ while True:
         if p1.room.get_items().__contains__(second_word):
             p1.room.remove_item(f"{cmd.split()[1]}")
             p1.on_take(cmd.split()[1])
-            print(f'This room now contains: {p1.room.get_items_string()}')
+            print(f'This room now contains: {p1.room.get_items_string()}')  
+            print(f'{p1.room.get_rooms_string()}')  
     elif first_word in relinquish:
         second_word = cmd.split()[1]
-        print(f'You sly dog you did it yo, you got {cmd}')        
+        print(f'You sly dog you did it yo, you got {cmd}') 
+        p1.room.add_item(f"{cmd.split()[1]}")
+        p1.on_remove(cmd.split()[1])
+        print(f'This room now contains: {p1.room.get_items_string()}')
+        print(f'{p1.room.get_rooms_string()}')                
     elif cmd == "q":
         print("Thanks for adventuring please quest again")
         break #or exit()
